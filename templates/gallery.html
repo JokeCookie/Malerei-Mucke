@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+
+    <div class="parallax"></div> <!-- Parallax-Bereich -->
+
+    <div class="container">
+        <h1>Galerie</h1>
+        <div class="row">
+            {% for file, data in image_data.items() %}
+                <div class="column">
+                    <img class="myImg" 
+                        src="{{ url_for('uploaded_file', filename=file) }}" 
+                        alt="{{ data['title'] }}" 
+                        data-description="{{ data['description'] }}" 
+                        style="width:100%; max-width:300px">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+   <!-- Modal -->
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+    <div id="description"></div> <!-- Hier wird die Beschreibung angezeigt -->
+</div>
+
+<script>
+    // Modal öffnen und Bildinformationen setzen
+    var modal = document.getElementById("myModal");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    var descriptionText = document.getElementById("description");
+    var span = document.getElementsByClassName("close")[0];
+
+    // Alle Bilder mit der Klasse 'myImg' durchgehen und Klick-Ereignis hinzufügen
+    var images = document.getElementsByClassName("myImg");
+
+    for (var i = 0; i < images.length; i++) {
+        images[i].onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt; // Titel im Modal
+            descriptionText.innerHTML = this.getAttribute('data-description'); // Beschreibung im Modal
+        }
+    }
+
+    // Schließen des Modals
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+</script>
+
+
+</body>
+
+</html>
