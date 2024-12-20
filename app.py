@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory, redirect
 import os
 
 app = Flask(__name__)
@@ -7,6 +7,11 @@ UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route('/home')
+def home():
+    # Diese Route lädt die Homepage
+    return render_template('home.html')
 
 @app.route('/')
 def index():
@@ -31,7 +36,8 @@ def upload_file():
     with open(metadata_path, 'w') as metadata_file:
         metadata_file.write(f"{title}\n{description}")
 
-    return f"Bild '{title}' erfolgreich hochgeladen!"
+    # Weiterleitung zur Upload-Seite nach erfolgreichem Hochladen
+    return redirect('/')  # Hier wird der Benutzer zur Upload-Seite zurückgeführt
 
 
 

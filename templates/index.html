@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gemälde Upload</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
+  <div class="topnav">
+    <a href="/home">Home</a>
+    <a href="#uebermich">Über Mich</a>
+    <a href="/gallery">Galerie</a>
+    <a href="kontakt.html">Kontakt</a>
+</div>
   <h1>Gemälde hochladen</h1>
   <form action="/upload" method="POST" enctype="multipart/form-data">
     <label for="title">Titel des Gemäldes:</label>

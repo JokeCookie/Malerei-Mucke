@@ -106,3 +106,23 @@ img {
     text-decoration: none;
     cursor: pointer;
 }
+
+/*Topnav*/
+.topnav {
+    overflow: hidden;
+    background-color: #7e8f97;
+}
+
+.topnav a {
+    float: left;
+    color: rgb(212, 221, 228);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
